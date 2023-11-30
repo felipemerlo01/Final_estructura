@@ -20,8 +20,22 @@ class Proyectos:
         imprimir_tabla(informacion, columnas, 10)
     
     def distribucion_por_area(self):
-        pass
-    
+        
+        '''
+        AREA        SUBAREA             CANTIDAD
+        PEPE                                1000
+                    HOLA                      50
+        
+        '''
+        
+        
+        """
+        Ciencias Naturales y exactas:
+            - Ciencias fisicas  %
+            - Ciencias Quimicas %
+            - Ciencias de la tierra %
+        """
+            
     # Guardar y visualizar una lista de proyectos ordenados por la fecha de inicialización.
     def proyectos_ordenados_por_fecha_inicio(self):
         # Ordenar el diccionario por la fecha de inicialización
@@ -49,12 +63,34 @@ class Proyectos:
         for proyecto in self.dic_proyectos.values():
             if proyecto.tipo_proyecto == "Tecnología e Innovación":
                 proyectos_tecnologias_emergentes += 1
-        porcentaje = (proyectos_tecnologias_emergentes / total_proyectos) * 100
-        return round(porcentaje,2)
+        porcentaje = round((proyectos_tecnologias_emergentes / total_proyectos) * 100, 2)
+        
+        print(f"Porcentaje de proyectos que utilizan tecnologias emergentes: {porcentaje}%\n")
 
     def tiempo_terminacion_segun_subarea(self):
-        #ejecuta tiempo_de_terminacion individualmente de cada proyecto
-        pass
-#hacer el promedio de todos los proyectoctos por subarea de todos los proyectos 
+        subareas = {}   #Key: subareas - Values: [suma, cantidad]
+        
+        # Agrego al diccionario la subarea si no esta, y su informacion de suma y cantidad correspondiente
+        for proyecto in self.dic_proyectos.values():
+            dias = proyecto.tiempo_de_terminacion()
+            if (dias != None):
+                if proyecto.subarea not in subareas:            
+                    subareas[proyecto.subarea] = [dias,1]
+                else:
+                    subareas[proyecto.subarea][0] += dias
+                    subareas[proyecto.subarea][1] += 1
+        
+        columnas = ['Subarea', 'Promedio de terminacion (dias)']
+        informacion = []
+        
+        # Iteramos por subarea para calcular cada promedio
+        for subarea, lista in subareas.items():
+            promedio = round(lista[0]/lista[1], 2)
+            fila = [subarea, promedio]
+            informacion.append(fila)
+        
+        # Imprime/visualiza la tabla de promedios por subarea
+        print('Promedio de tiempo de terminacion de proyectos por subarea en dias: \n')
+        imprimir_tabla(informacion, columnas, 10)
 
 

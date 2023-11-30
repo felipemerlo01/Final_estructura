@@ -136,5 +136,4 @@ FALTA:
         - Grafico(?
     - Visualizar la relación entre el monto de financiamiento solicitado y el monto de financiamiento otorgado
         - Media, Desviacion estandar, cuantil, etc
-    - tiempo promedio de terminación de los proyectos según el sub área
     - Chequear saltos de linea en terminal (estetico)

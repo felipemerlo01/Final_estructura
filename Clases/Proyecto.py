@@ -33,16 +33,14 @@ class Proyecto:
         else:
             return 
         
-    # Calcular tiempo de terminacion: fecha_fin - fecha_inicio, CHEQUEAR que tenga fecha_fin !!!!!
+    # Calcular tiempo de terminacion: fecha_fin - fecha_inicio
     def tiempo_de_terminacion(self):
-        if (self.fecha_finalizacion != None):
-            fecha_inicio = datetime.strptime(self.fecha_inicio, '%Y-%m-%d')
-            fecha_finalizacion = datetime.strptime(self.fecha_finalizacion, '%Y-%m-%d')
+        if (isinstance(self.fecha_finalizacion, str)):
+            fecha_inicio = datetime.strptime(self.fecha_inicio, "%d/%m/%y")
+            fecha_finalizacion = datetime.strptime(self.fecha_finalizacion, '%d/%m/%y')
             tiempo = (fecha_finalizacion - fecha_inicio).days
             return tiempo
-        return     #queda vacio para poder depues hacer bien el promedio de los proyectos finalizados 
-
-    
+        return     # Retorna vacio si se trata de un proyecto sin fecha de finalizacion
         # 
 
     

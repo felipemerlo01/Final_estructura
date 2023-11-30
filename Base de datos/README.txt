@@ -12,5 +12,5 @@ ACLARACIONES sobre depuración de la base de datos:
 						
     - Al hacer BUSCARV para obtener "tipo_proyecto_cyt_desc" de ref_tipo_proyecto, hay celdas vacias en "tipo_proyecto_id" en db_Proyectos por lo tanto en vez de tirar error reemplazzamos con "SIN DATOS"		
                                                       
-    - Como existian disrectores con sexo "S/D" que no conformaban parte ni de cantidad_miembros_M ni cantidad_miembros_F, se recalcularon tanto cantidad_miembros_M y cantidad_miembros_F para incluir al director, asi como una columna de  cantidad_miembros_S/D ya que esos participantes sin informacion siguen formando parte del calculo de la proporcion de participantes por sexo.														
+    - Como existian directores con sexo "S/D" que no conformaban parte ni de cantidad_miembros_M ni cantidad_miembros_F, se recalcularon tanto cantidad_miembros_M y cantidad_miembros_F para incluir al director, asi como una columna de  cantidad_miembros_S/D ya que esos participantes sin informacion siguen formando parte del calculo de la proporcion de participantes por sexo.														
 															

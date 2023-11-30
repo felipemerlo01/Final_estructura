@@ -44,14 +44,16 @@ def lector_proyectos(path, PROYECTOS):
         print(f"Error inesperado: {e}")
 
 def menu_principal():
-    print('''¿Que desea visualizar?
+    print('''
+¿Que desea visualizar?
 1. Distribución de los proyectos por área de investigación
 2. Porcentaje de participación de las mujeres en los diferentes proyectos
 3. Tiempo promedio de terminación de los proyectos según el sub área
 4. Porcentaje de proyectos que han utilizado tecnologías emergentes
 5. Proyectos ordenados por la fecha de inicialización
 6. Relación entre el monto de financiamiento solicitado y el monto de financiamiento otorgado
-7. Salir''')
+7. Salir
+''')
 
 def validar_opcion_menu(opcion, cantidad_opciones):
     while (True):
@@ -100,7 +102,6 @@ def imprimir_tabla(filas, columnas, cantidad_por_pag):
             # Imprimir columnas
             print()
             print(formato_columnas.format(*columnas))
-    print()
 
 def crear_csv(nombre_file, filas, encabezados):
     try:

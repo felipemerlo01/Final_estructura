@@ -19,14 +19,13 @@ if (path):
         menu_principal()
         opcion = validar_opcion_menu(input('Ingrese una opción: '), 7)
         if (opcion == '1'):
-            pass
+            PROYECTOS.distribucion_por_area()
         elif (opcion =='2'):
             PROYECTOS.participacion_genero_promedio()
         elif (opcion == '3'):
-            pass
+            PROYECTOS.tiempo_terminacion_segun_subarea()
         elif (opcion == '4'):
-            porcentaje_tecnologias_emergentes = PROYECTOS.porcentaje_tecnologias_emergentes()
-            print(f"Porcentaje de proyectos de que utilizan tecnologias emergentes: {porcentaje_tecnologias_emergentes}%")
+            PROYECTOS.porcentaje_tecnologias_emergentes()
         elif (opcion == '5'):
             PROYECTOS.proyectos_ordenados_por_fecha_inicio()
         elif (opcion == '6'):
