@@ -132,8 +132,8 @@ Identificar las diferentes estructuras aimplementar acorde a las funcionalidades
 ------------- 30/11 --------------
 
 FALTA:
-    - distribución de los proyectos por área de investigación
+    - distribución de los proyectos por área de investigación    DONE
         - Grafico(?
     - Visualizar la relación entre el monto de financiamiento solicitado y el monto de financiamiento otorgado
         - Media, Desviacion estandar, cuantil, etc
-    - Chequear saltos de linea en terminal (estetico)
+    - Chequear saltos de linea en terminal (estetico)   DONE

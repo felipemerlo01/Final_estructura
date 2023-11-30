@@ -14,10 +14,6 @@ class Proyecto:
         self.area = area
         self.subarea = subarea
         self.tipo_proyecto = tipo_proyecto
-    
-    # Visualizar la relación entre el monto de financiamiento solicitado y el monto de financiamiento
-    def relacion_monto_financiamiento(self):
-        pass
 
     # Porcentaje de participacion del proyecto por sexo
     def porcentaje_participacion_genero(self):
@@ -28,7 +24,7 @@ class Proyecto:
             masculino = round((int(self.cantidad_miembros_M)/total_miembros)*100,3)
             sin_datos = round((int(self.cantidad_miembros_SD)/total_miembros)*100,3)
             
-            resultado = [self.proyecto_id, masculino, femenino, sin_datos]
+            resultado = (self.proyecto_id, masculino, femenino, sin_datos)
             return resultado
         else:
             return 
@@ -41,10 +37,15 @@ class Proyecto:
             tiempo = (fecha_finalizacion - fecha_inicio).days
             return tiempo
         return     # Retorna vacio si se trata de un proyecto sin fecha de finalizacion
-        # 
 
-    
+    # Relacion entre monto de financiamiento solicitado y otorgado
+    def proporcion_monto(self):
+        if (self.monto_financiado_solicitado != 0):
+            proporcion = round(((self.monto_financiado_adjudicado/self.monto_financiado_solicitado)*100),1)
+        else:
+            proporcion = 100
 
+        return proporcion
 
     
 

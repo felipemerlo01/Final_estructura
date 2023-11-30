@@ -1,7 +1,17 @@
-import pandas as pd
 import os
 import csv
 from Clases.Proyecto import Proyecto
+
+try:
+    import plotly.express as px
+except ImportError:
+    print("El modulo plotly no se encuentra. Por favor instale el modulo requerido.")
+
+try:
+    import pandas as pd
+except ImportError:
+    print("El modulo pandas no se encuentra. Por favor instale el modulo requerido.")
+
 
 # Obtiene el path relevante de base de datos
 def obtener_path():
@@ -64,25 +74,11 @@ def validar_opcion_menu(opcion, cantidad_opciones):
             return opcion
         except ValueError:
             opcion = input('Opcion invalida. Ingrese una de las opciones del menú: ')
-
-def validar_proyecto_int(id_proyecto):
-    while (True):
-        try:
-            id_proyecto = int(id_proyecto) 
-            return id_proyecto
-        except ValueError:
-            id_proyecto = input('Ingrese un ID de proyecto válido (número entero): ')
-
-def validar_proyecto_existente(id_proyecto, dic_proyectos):
-    while (True):
-        if id_proyecto in dic_proyectos:
-            proyecto_elegido = dic_proyectos[id_proyecto]
-            return proyecto_elegido
-        else:
-            print(f"No se encontró un proyecto con ID {id_proyecto}.")
-            return
         
-def imprimir_tabla(filas, columnas, cantidad_por_pag):
+def imprimir_tabla(filas, columnas, cantidad_por_pag=None):
+    if (cantidad_por_pag is None):
+        cantidad_por_pag = len(filas)
+    
     # Encontrar el ancho maximo de las columnas
     ancho_col_max = [max(len(str(item)) for item in column) for column in zip(columnas, *filas)]
     
@@ -114,3 +110,40 @@ def crear_csv(nombre_file, filas, encabezados):
             print(f"Se ha creado el archivo {nombre_file} correctamente\n")
     except Exception as e:
         print(f'Ocurrió el siguiente error al crear el archivo CSV: {e}')
+
+def imprimir_distribucion_por_area(cant_proyectos_area_subarea):
+    for area, subareas in cant_proyectos_area_subarea.items():
+        print(f"{area}: Total de proyectos {sum(subareas.values())}")
+        for subarea, cantidad_proyectos in subareas.items():
+            print(f"  - {subarea}: {cantidad_proyectos}")
+        print("---")
+
+def graficar_datos(cant_proyectos_area_subarea):
+    data = []
+    for area, subareas in cant_proyectos_area_subarea.items():
+        if (area != 'SIN DATOS'):
+            for subarea, cantidad_proyectos in subareas.items():
+                if (subarea != 'SIN DATOS'):
+                    data.append({'Area': area, 'Subarea': subarea, 'Proyectos': cantidad_proyectos})
+    df = pd.DataFrame(data)
+
+    # Elegimos los colores
+    area_colors = {
+        'CIENCIAS NATURALES Y EXACTAS': 'blue',
+        'CIENCIAS MÉDICAS Y DE LA SALUD': 'green',
+        'CIENCIAS SOCIALES': 'red',
+        'HUMANIDADES': 'purple',
+        'CIENCIAS AGRÍCOLAS': 'orange',
+        'INGENIERÍAS Y TECNOLOGÍAS': 'cyan',
+    }
+    
+    # Configuramos el grafico de barras
+    grafico = px.bar(df, x='Subarea', y='Proyectos', color='Area', color_discrete_map=area_colors,
+                labels={'Proyectos': 'Número de Proyectos'},
+                title='Número de Proyectos por Subárea y Área, excluyendo los SIN DATOS',
+                text='Proyectos')
+
+    # Agrupa las barras y inclina las etiquetas asi es mas facil leer
+    grafico.update_layout(barmode='group', xaxis_tickangle=-45)
+    
+    grafico.show()

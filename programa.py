@@ -1,5 +1,5 @@
 # Importaciones
-from Funciones_extra import obtener_path, lector_proyectos, menu_principal, validar_opcion_menu, validar_proyecto_existente
+from Funciones_extra import obtener_path, lector_proyectos, menu_principal, validar_opcion_menu
 from Clases.Proyectos import Proyectos
 
 #que te copie el path 
@@ -29,7 +29,7 @@ if (path):
         elif (opcion == '5'):
             PROYECTOS.proyectos_ordenados_por_fecha_inicio()
         elif (opcion == '6'):
-            pass
+            PROYECTOS.monto_solicitado_otorgado()
         else:
             continuar = False
 

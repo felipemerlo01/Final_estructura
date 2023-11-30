@@ -1,4 +1,4 @@
-from Funciones_extra import imprimir_tabla, crear_csv
+from Funciones_extra import imprimir_tabla, crear_csv, imprimir_distribucion_por_area, graficar_datos
 from datetime import datetime
 import os
 
@@ -20,21 +20,26 @@ class Proyectos:
         imprimir_tabla(informacion, columnas, 10)
     
     def distribucion_por_area(self):
-        areas = set() # Un set asi toma las areas unicas
-        subareas = {}
-        for proyecto in self.dic_proyectos.values():
-            areas.add(proyecto.area)
-            if proyecto.area not in subareas:
-                subareas[proyecto.area] = set()
-            subareas[proyecto.area].add(proyecto.subarea)   
+        cant_proyectos_area_subarea = {} # Cantidad de proyectos por area y subarea
 
-        """
-        Ciencias Naturales y exactas:
-            - Ciencias fisicas  %
-            - Ciencias Quimicas %
-            - Ciencias de la tierra %
-        """
+        for proyecto in self.dic_proyectos.values():
+            area_del_proyecto = proyecto.area
+            subarea_del_proyecto = proyecto.subarea
             
+            if area_del_proyecto not in cant_proyectos_area_subarea:
+                cant_proyectos_area_subarea[area_del_proyecto] = {}
+            
+            if subarea_del_proyecto not in cant_proyectos_area_subarea[area_del_proyecto]:
+                cant_proyectos_area_subarea[area_del_proyecto][subarea_del_proyecto] = 1
+            else:
+                cant_proyectos_area_subarea[area_del_proyecto][subarea_del_proyecto] += 1
+        
+        # Imprimimos la informacion
+        imprimir_distribucion_por_area(cant_proyectos_area_subarea)
+        
+        # Graficamos 
+        graficar_datos(cant_proyectos_area_subarea)
+    
     # Guardar y visualizar una lista de proyectos ordenados por la fecha de inicialización.
     def proyectos_ordenados_por_fecha_inicio(self):
         # Ordenar el diccionario por la fecha de inicialización
@@ -64,7 +69,7 @@ class Proyectos:
                 proyectos_tecnologias_emergentes += 1
         porcentaje = round((proyectos_tecnologias_emergentes / total_proyectos) * 100, 2)
         
-        print(f"Porcentaje de proyectos que utilizan tecnologias emergentes: {porcentaje}%\n")
+        print(f"Porcentaje de proyectos que utilizan tecnologias emergentes: {porcentaje}%")
 
     def tiempo_terminacion_segun_subarea(self):
         subareas = {}   #Key: subareas - Values: [suma, cantidad]
@@ -92,4 +97,12 @@ class Proyectos:
         print('Promedio de tiempo de terminacion de proyectos por subarea en dias: \n')
         imprimir_tabla(informacion, columnas, 10)
 
-
+    def monto_solicitado_otorgado(self):
+        columnas = ['ID Proyecto', 'Monto solicitado', 'Monto otorgado', 'Indice de financiación (%)']
+        informacion = []
+        for id, proyecto in self.dic_proyectos.items():
+            proporcion = proyecto.proporcion_monto()
+            fila = (id, proyecto.monto_financiado_solicitado, proyecto.monto_financiado_adjudicado, proporcion)
+            informacion.append(fila)
+        
+        imprimir_tabla(informacion, columnas, 10)
