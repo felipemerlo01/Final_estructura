@@ -20,15 +20,14 @@ class Proyectos:
         imprimir_tabla(informacion, columnas, 10)
     
     def distribucion_por_area(self):
-        
-        '''
-        AREA        SUBAREA             CANTIDAD
-        PEPE                                1000
-                    HOLA                      50
-        
-        '''
-        
-        
+        areas = set() # Un set asi toma las areas unicas
+        subareas = {}
+        for proyecto in self.dic_proyectos.values():
+            areas.add(proyecto.area)
+            if proyecto.area not in subareas:
+                subareas[proyecto.area] = set()
+            subareas[proyecto.area].add(proyecto.subarea)   
+
         """
         Ciencias Naturales y exactas:
             - Ciencias fisicas  %
