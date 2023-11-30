@@ -64,10 +64,10 @@ por proyecto? algun promedio?
 
 CLASES:
 
-usuario sin herencia acá q son todos lo mismo
+usuario sin herencia acá q son todos lo mismo --> no hace falta 
 
 clase Proyecto(?)(columnas del csv)
-se me ocurre quizás clase Miembro (proyecto_en_el_q_participa, sexo, funcion) (?)
+se me ocurre quizás clase Miembro (proyecto_en_el_q_participa, sexo, funcion) (?) ---> no hace falta 
 
 che duda importante
 
@@ -111,8 +111,30 @@ ProyectosTotales:
 - ref_discinplina
 - ref_estado_projecto (quizá, para tiempo promedio de terminacion)
 - lista de proyecto de cada año
+- ref_tipo_proyecto
 
 ------ FALTARIA VER TAMB LAS COLUMNAS:
 
 por ejemplo para cada proyecto, no nos interesan todas las columnas, de ref_discinplina tampoco
 
+
+-----------COSAS QUE HAY QUE USAR DE LA MATERIA --------------------------
+Listas secuenciales
+listas encadenadas simples  --> VER 
+árboles binarios de búsqueda 
+pilas
+colas
+conjuntos
+diccionarios y tuplas
+Identificar las diferentes estructuras aimplementar acorde a las funcionalidades que se les pedirán
+
+
+------------- 30/11 --------------
+
+FALTA:
+    - distribución de los proyectos por área de investigación
+        - Grafico(?
+    - Visualizar la relación entre el monto de financiamiento solicitado y el monto de financiamiento otorgado
+        - Media, Desviacion estandar, cuantil, etc
+    - tiempo promedio de terminación de los proyectos según el sub área
+    - Chequear saltos de linea en terminal (estetico)
