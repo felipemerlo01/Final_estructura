@@ -2,7 +2,7 @@ Se unificaron los archivos:
 proyectos_2015, proyectos_2016, proyectos_2017, proyectos_2018
 
 Asi como sus referencias (relevantes al análisis):
-ref_disciplina, ref_estado_projecto, ref_tipo_proyecto, proyecto_disciplina
+ref_disciplina, ref_tipo_proyecto, proyecto_disciplina
 
 Y solo se mantuvieron las columnas necesarias.
 
