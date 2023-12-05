@@ -13,7 +13,7 @@ class Proyectos:
             if (registro is not None):
                 informacion.append(registro)
             
-        columnas = ["Tipo", "Masculino (%)", "Femenino (%)", "Sin Datos (%)"]
+        columnas = ["ID Proyecto", "Masculino (%)", "Femenino (%)", "Sin Datos (%)"]
         
         print('Información porcentual de proyectos por sexo: \n')
             
